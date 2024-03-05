@@ -177,6 +177,41 @@ Serial.begin(115200);
 }
 
 void loop() {
+     uint16_t error;
+    char errorMessage[256];
+
+    delay(1000);
+
+    // Read Measurement
+    float massConcentrationPm1p0;
+    float massConcentrationPm2p5;
+    float massConcentrationPm4p0;
+    float massConcentrationPm10p0;
+    float ambientHumidity;
+    float ambientTemperature;
+    float vocIndex;
+    float noxIndex;
+
+    error = sen5x.readMeasuredValues(
+        massConcentrationPm1p0, massConcentrationPm2p5, massConcentrationPm4p0,
+        massConcentrationPm10p0, ambientHumidity, ambientTemperature, vocIndex,
+        noxIndex);
+
+    if (error) {
+        Serial.print("Error trying to execute readMeasuredValues(): ");
+        errorToString(error, errorMessage, 256);
+        Serial.println(errorMessage);
+    } else {
+        Serial.print("MassConcentrationPm1p0:");
+        Serial.print(massConcentrationPm1p0);
+        Serial.print("\t");
+        Serial.print("MassConcentrationPm2p5:");
+        Serial.print(massConcentrationPm2p5);
+        Serial.print("\t");
+        Serial.print("MassConcentrationPm4p0:");
+        Serial.print(massConcentrationPm4p0);
+        Serial.print("\t");
+        Serial.print("MassConcentrationPm10p0:");
         Serial.print(massConcentrationPm10p0);
         Serial.print("\t");
         Serial.print("AmbientHumidity:");
@@ -206,9 +241,20 @@ void loop() {
         } else {
             Serial.println(noxIndex);
         }
+    }
   // Esempio di pubblicazione su un topic MQTT
   client.publish("norvi/BM1-ES/test", "Ciao dal tuo Norvi BM1-ES!");
   // Mantieni la connessione al broker MQTT
   client.loop();
   delay(10000);
+}
+void publishToMQTT(float massConcentrationPm1p0, float massConcentrationPm2p5, float massConcentrationPm4p0, float massConcentrationPm10p0, float ambientHumidity, float ambientTemperature) {
+    // Invia i dati al broker MQTT
+    if (!client.connected()) {
+        reconnect();
+    }
+    String payload = "{\"MassConcentrationPm1p0\":" + String(massConcentrationPm1p0) + ", \"MassConcentrationPm2p5\":" + String(massConcentrationPm2p5) + ", \"MassConcentrationPm4p0\":" + String(massConcentrationPm4p0) + ", \"MassConcentrationPm10p0\":" + String(massConcentrationPm10p0) + ", \"AmbientHumidity\":" + String(ambientHumidity) + ", \"AmbientTemperature\":" + String(ambientTemperature)"}";
+
+    const char* payloadChar = payload.c_str();
+    client.publish(norvi/BM1-ES/sensirion/SEN55/test, payload.c_str());
 }
