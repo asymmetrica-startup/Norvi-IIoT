@@ -241,17 +241,11 @@ void loop() {
         } else {
             Serial.println(noxIndex);
         }
-    }
-}
-void publishToMQTT(float massConcentrationPm1p0, float massConcentrationPm2p5, float massConcentrationPm4p0, float massConcentrationPm10p0, float ambientHumidity, float ambientTemperature) {
-    // Invia i dati al broker MQTT
-    if (!client.connected()) {
-        reconnect();
-    }
-    String payload = "{\"MassConcentrationPm1p0\":" + String(massConcentrationPm1p0) + ", \"MassConcentrationPm2p5\":" + String(massConcentrationPm2p5) + ", \"MassConcentrationPm4p0\":" + String(massConcentrationPm4p0) + ", \"MassConcentrationPm10p0\":" + String(massConcentrationPm10p0) + ", \"AmbientHumidity\":" + String(ambientHumidity) + ", \"AmbientTemperature\":" + String(ambientTemperature)"}";
+    String payload = "{\"MassConcentrationPm1p0\":" + String(massConcentrationPm1p0) + ", \"MassConcentrationPm2p5\":" + String(massConcentrationPm2p5) + ", \"MassConcentrationPm4p0\":" + String(massConcentrationPm4p0) + ", \"MassConcentrationPm10p0\":" + String(massConcentrationPm10p0) + ", \"AmbientHumidity\":" + String(ambientHumidity) + ", \"AmbientTemperature\":" + String(ambientTemperature) + "}";
 
     const char* payloadChar = payload.c_str();
-    client.publish("norvi/BM1-ES/sensirion/SEN55/test", payload.c_str());
+    client.publish("norvi/BM1-ES/sensirion/SEN55/test", payloadChar);
     client.loop();
     delay(10000);
+    }
 }

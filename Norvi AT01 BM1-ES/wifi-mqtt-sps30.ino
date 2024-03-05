@@ -161,17 +161,10 @@ void loop() {
   }
 
   delay(1000);
-}
-
-void publishToMQTT(float m.nc_0p5, float m.nc_1p0, float m.nc_2p5, float m.nc_4p0, float m.nc_10p0) {
-    // Invia i dati al broker MQTT
-    if (!client.connected()) {
-        reconnect();
-    }
-    String payload = "{\"NC  0.5\":" + String(m.nc_0p5) + ", \"NC  1.0\":" + String(m.nc_1p0) + ", \"NC  2.5\":" + String(m.nc_2p5) + ", \"NC  4.0\":" + String(m.nc_4p0) + ", \"NC  10.0\":" + String(m.nc_10p0)"}";
+    String payload = "{\"NC  0.5\":" + String(m.nc_0p5) + ", \"NC  1.0\":" + String(m.nc_1p0) + ", \"NC  2.5\":" + String(m.nc_2p5) + ", \"NC  4.0\":" + String(m.nc_4p0) + ", \"NC  10.0\":" + String(m.nc_10p0) + "}";
 
     const char* payloadChar = payload.c_str();
-    client.publish("norvi/BM1-ES/sensirion/SPS30/test", payload.c_str());
+    client.publish("norvi/BM1-ES/sensirion/SPS30/test", payloadChar);
     client.loop();
     delay(10000);
 }
