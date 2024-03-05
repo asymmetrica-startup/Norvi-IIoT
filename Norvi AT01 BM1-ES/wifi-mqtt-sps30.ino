@@ -161,12 +161,8 @@ void loop() {
   }
 
   delay(1000);
-  // Esempio di pubblicazione su un topic MQTT
-  client.publish("norvi/BM1-ES/test", "Ciao dal tuo Norvi BM1-ES!");
-  // Mantieni la connessione al broker MQTT
-  client.loop();
-  delay(10000);
 }
+
 void publishToMQTT(float m.nc_0p5, float m.nc_1p0, float m.nc_2p5, float m.nc_4p0, float m.nc_10p0) {
     // Invia i dati al broker MQTT
     if (!client.connected()) {
@@ -176,4 +172,6 @@ void publishToMQTT(float m.nc_0p5, float m.nc_1p0, float m.nc_2p5, float m.nc_4p
 
     const char* payloadChar = payload.c_str();
     client.publish(norvi/BM1-ES/sensirion/SPS30/test, payload.c_str());
+    client.loop();
+    delay(10000);
 }
