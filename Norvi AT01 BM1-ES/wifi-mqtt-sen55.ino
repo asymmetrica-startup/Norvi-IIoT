@@ -251,7 +251,7 @@ void publishToMQTT(float massConcentrationPm1p0, float massConcentrationPm2p5, f
     String payload = "{\"MassConcentrationPm1p0\":" + String(massConcentrationPm1p0) + ", \"MassConcentrationPm2p5\":" + String(massConcentrationPm2p5) + ", \"MassConcentrationPm4p0\":" + String(massConcentrationPm4p0) + ", \"MassConcentrationPm10p0\":" + String(massConcentrationPm10p0) + ", \"AmbientHumidity\":" + String(ambientHumidity) + ", \"AmbientTemperature\":" + String(ambientTemperature)"}";
 
     const char* payloadChar = payload.c_str();
-    client.publish(norvi/BM1-ES/sensirion/SEN55/test, payload.c_str());
+    client.publish("norvi/BM1-ES/sensirion/SEN55/test", payload.c_str());
     client.loop();
     delay(10000);
 }
