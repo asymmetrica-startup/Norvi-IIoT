@@ -1,3 +1,5 @@
+#include <Adafruit_ADS1X15.h>
+#include <Adafruit_NeoPixel.h>
 #include <ModbusMaster.h>                             
 #include <SPI.h>
 #include <Wire.h>
@@ -7,9 +9,12 @@
 
 #define RS485_RX_PIN 21
 #define RS485_TX_PIN 22
-ModbusMaster node;
 
 #define BOT_TOKEN "6910328263:AAFSaqnW6Gc9JXkonkqYAsemwAR591aEdOo"
+
+ModbusMaster node;
+Adafruit_ADS1115 ads1; 
+Adafruit_NeoPixel pixels (NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 const char* ssid = "FASTWEB-Ubx8JX";
 const char* password = "TGqfj9GTK4";
@@ -33,6 +38,10 @@ void postTransmission() {
 
 void setup() {
   Serial.begin(115200);
+
+  pixels.setBrightness(90);
+  pixels.setPixelColor(0, pixels.Color(0, 255, 0));
+  pixels.show();
 
   // Connessione alla rete WiFi
   WiFi.begin(ssid, password);
