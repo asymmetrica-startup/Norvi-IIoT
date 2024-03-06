@@ -11,8 +11,8 @@
 #define NUMPIXELS 1
 #define BOT_TOKEN "6910328263:AAFSaqnW6Gc9JXkonkqYAsemwAR591aEdOo"
 
-const char* ssid = "Taranto OnAir";
-const char* password = "Alex260981";
+const char* ssid = "FASTWEB-Ubx8JX";
+const char* password = "TGqfj9GTK4";
 const char* mqtt_server = "38.242.140.25";
 
 WiFiClient espClient;
