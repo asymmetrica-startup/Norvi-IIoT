@@ -10,6 +10,8 @@
 #define RS485_RX_PIN 21
 #define RS485_TX_PIN 22
 
+#define PIN      25
+#define NUMPIXELS 1
 #define BOT_TOKEN "6910328263:AAFSaqnW6Gc9JXkonkqYAsemwAR591aEdOo"
 
 ModbusMaster node;
