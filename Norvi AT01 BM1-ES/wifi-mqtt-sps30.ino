@@ -1,3 +1,5 @@
+#include <Adafruit_ADS1X15.h>
+#include <Adafruit_NeoPixel.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <WiFi.h>
@@ -5,6 +7,8 @@
 #include <UniversalTelegramBot.h>
 #include <sps30.h>
 
+#define PIN      25
+#define NUMPIXELS 1
 #define BOT_TOKEN "6910328263:AAFSaqnW6Gc9JXkonkqYAsemwAR591aEdOo"
 
 const char* ssid = "Taranto OnAir";
@@ -15,7 +19,19 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 UniversalTelegramBot bot(BOT_TOKEN, espClient);
 
+Adafruit_ADS1115 ads1; 
+Adafruit_NeoPixel pixels (NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
 void setup() {
+
+    pixels.setBrightness(90);
+    pixels.setPixelColor(0, pixels.Color(0, 0, 255));
+    pixels.show();
+
+    Wire.begin(21,22);
+    ads1.begin(0x48); 
+    ads1.setGain(GAIN_ONE); 
+
   int16_t ret;
   uint8_t auto_clean_days = 4;
   uint32_t auto_clean;
@@ -88,6 +104,10 @@ void loop() {
   char serial[SPS30_MAX_SERIAL_LEN];
   uint16_t data_ready;
   int16_t ret;
+
+  Serial.print("Analog 0 ");
+  Serial.println(ads1.readADC_SingleEnded(0)); 
+  delay(10); 
 
   do {
     ret = sps30_read_data_ready(&data_ready);
