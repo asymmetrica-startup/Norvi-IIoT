@@ -1,3 +1,5 @@
+#include <Adafruit_ADS1X15.h>
+#include <Adafruit_NeoPixel.h>
 #include <SPI.h>
 #include <Wire.h>
 #include <WiFi.h>
@@ -6,10 +8,12 @@
 #include <Arduino.h>
 #include <SensirionI2CSen5x.h>
 
+#define PIN      25
+#define NUMPIXELS 1
 #define BOT_TOKEN "6910328263:AAFSaqnW6Gc9JXkonkqYAsemwAR591aEdOo"
 
-const char* ssid = "Taranto OnAir";
-const char* password = "Alex260981";
+const char* ssid = "FASTWEB-Ubx8JX";
+const char* password = "TGqfj9GTK4";
 const char* mqtt_server = "38.242.140.25";
 
 WiFiClient espClient;
@@ -25,6 +29,8 @@ UniversalTelegramBot bot(BOT_TOKEN, espClient);
 #endif
 
 SensirionI2CSen5x sen5x;
+Adafruit_ADS1115 ads1; 
+Adafruit_NeoPixel pixels (NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 void printModuleVersions() {
     uint16_t error;
@@ -96,8 +102,13 @@ Serial.begin(115200);
     while (!Serial) {
         delay(100);
     }
+    pixels.setBrightness(90);
+    pixels.setPixelColor(0, pixels.Color(0, 0, 255));
+    pixels.show();
 
-    Wire.begin();
+    Wire.begin(21,22);
+    ads1.begin(0x48); 
+    ads1.setGain(GAIN_ONE); 
 
     sen5x.begin(Wire);
 
@@ -177,11 +188,15 @@ Serial.begin(115200);
 }
 
 void loop() {
-     uint16_t error;
+    uint16_t error;
     char errorMessage[256];
 
     delay(1000);
 
+    Serial.print("Analog 0 ");
+    Serial.println(ads1.readADC_SingleEnded(0)); 
+    delay(10); 
+    
     // Read Measurement
     float massConcentrationPm1p0;
     float massConcentrationPm2p5;
