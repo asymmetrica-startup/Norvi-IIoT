@@ -73,7 +73,7 @@ void setup() {
 void loop() {
    uint8_t result;
 
-   register1 = node.readHoldingRegisters(0x0000, 3);
+   result = node.readHoldingRegisters(0x0000, 3);
 
 if (result == node.ku8MBSuccess) {
     int register1 = node.getResponseBuffer(0);
