@@ -85,7 +85,8 @@ if (result == node.ku8MBSuccess) {
     String payload = "{\"register1\":" + String(register1) + ", \"register2\":" + String(register2) + ", \"register3\":" + String(register3) + ", \"register4\":" + String(register4) + "}";
 
     // Pubblica il payload sul topic desiderato
-    client.publish("norvi/BM1-ES/RS485/test", payload.c_str());
+    const char* payloadChar = payload.c_str();
+    client.publish("norvi/BM1-ES/RS485/test", payloadChar);
   }
   client.loop();
   delay(10000);
