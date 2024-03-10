@@ -1,4 +1,9 @@
 # NORVI IIOT-AE01-R
+
+> DEVICE INFO
+CHIP: ESP32-D0WDQ6
+MAC: d4:d4:da:59:08:c4
+
 - Datasheet --> (https://norvi.lk/docs/norvi-iiot-ae01-r-datasheet/)
 - Userguide --> (https://norvi.lk/docs/norvi-iiot-ae01-r-user-guide/)
 

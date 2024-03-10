@@ -7,6 +7,11 @@
 - EspTool.py --> [https://vixr.it/guida-allinstallazione-e-luso-di-esptool-py-in-italiano/]
 
 
+Check USBSerial Ports in Linux 
+```
+dmesg | grep tty
+```
+
 esptool.py USE
 
 > BACKUP FIRMWARE
