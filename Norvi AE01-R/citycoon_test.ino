@@ -62,19 +62,19 @@ void setup() {
 }
 
 void loop() {
-    
-  client.publish("measures/@d4:d4:da:59:08:c4/PM/1.0", "2.84"
-  client.publish("measures/@d4:d4:da:59:08:c4/PM/2.5", "3.91"
-  client.publish("measures/@d4:d4:da:59:08:c4/PM/4.0", "4.66"
-  client.publish("measures/@d4:d4:da:59:08:c4/PM/10.0", "5.04"
 
-  client.publish("measures/@d4:d4:da:59:08:c4/NC/0.5", "16.76"
-  client.publish("measures/@d4:d4:da:59:08:c4/NC/1.0", "21.45"
-  client.publish("measures/@d4:d4:da:59:08:c4/NC/2.5", "22.54"
-  client.publish("measures/@d4:d4:da:59:08:c4/NC/4.0", "22.74"
-  client.publish("measures/@d4:d4:da:59:08:c4/NC/10.0", "22.79"
+  client.publish("measures/@d4:d4:da:59:08:c4/PM/1.0", "2.84");
+  client.publish("measures/@d4:d4:da:59:08:c4/PM/2.5", "3.91");
+  client.publish("measures/@d4:d4:da:59:08:c4/PM/4.0", "4.66");
+  client.publish("measures/@d4:d4:da:59:08:c4/PM/10.0", "5.04");
 
-  client.publish("measures/@d4:d4:da:59:08:c4/TP/", "0.74"
+  client.publish("measures/@d4:d4:da:59:08:c4/NC/0.5", "16.76");
+  client.publish("measures/@d4:d4:da:59:08:c4/NC/1.0", "21.45");
+  client.publish("measures/@d4:d4:da:59:08:c4/NC/2.5", "22.54");
+  client.publish("measures/@d4:d4:da:59:08:c4/NC/4.0", "22.74");
+  client.publish("measures/@d4:d4:da:59:08:c4/NC/10.0", "22.79");
+
+  client.publish("measures/@d4:d4:da:59:08:c4/TP/", "0.74");
 
   client.loop();
 }
