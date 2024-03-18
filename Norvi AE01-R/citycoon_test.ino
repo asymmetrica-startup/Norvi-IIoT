@@ -5,8 +5,8 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-const char* ssid = "Taranto OnAir";
-const char* password = "Alex260981";
+const char* ssid = "Villa";
+const char* password = "pefragabila";
 const char* mqtt_server = "dashboard.cityconn.cloud";
 const int mqtt_port = 30883;
 const char* mqtt_user = "dbagroup";
@@ -56,25 +56,25 @@ void setup() {
       delay(5000);
     }
   }
-  client.publish("measures/@d4:d4:da:59:08:c4/System/SN", "ESP32-D0WDQ6");
+  client.publish("measures/@d4:d4:da:59:08:c4/System/SN", "d4:d4:da:59:08:c4");
   client.publish("measures/@d4:d4:da:59:08:c4/System/EC", "Norvi AE01-R");
-  client.publish("measures/@d4:d4:da:59:08:c4/System/uptime", "001");
+  client.publish("measures/@d4:d4:da:59:08:c4/System/uptime", "Online");
 }
 
 void loop() {
 
-  client.publish("measures/@d4:d4:da:59:08:c4/PM/1.0", "2.84");
-  client.publish("measures/@d4:d4:da:59:08:c4/PM/2.5", "3.91");
-  client.publish("measures/@d4:d4:da:59:08:c4/PM/4.0", "4.66");
-  client.publish("measures/@d4:d4:da:59:08:c4/PM/10.0", "5.04");
+  client.publish("measures/@d4:d4:da:59:08:c4/PM_1.0", "2.84");
+  client.publish("measures/@d4:d4:da:59:08:c4/PM_2.5", "3.91");
+  client.publish("measures/@d4:d4:da:59:08:c4/PM_4.0", "4.66");
+  client.publish("measures/@d4:d4:da:59:08:c4/PM_10.0", "5.04");
 
-  client.publish("measures/@d4:d4:da:59:08:c4/NC/0.5", "16.76");
-  client.publish("measures/@d4:d4:da:59:08:c4/NC/1.0", "21.45");
-  client.publish("measures/@d4:d4:da:59:08:c4/NC/2.5", "22.54");
-  client.publish("measures/@d4:d4:da:59:08:c4/NC/4.0", "22.74");
-  client.publish("measures/@d4:d4:da:59:08:c4/NC/10.0", "22.79");
+  client.publish("measures/@d4:d4:da:59:08:c4/NC_0.5", "16.76");
+  client.publish("measures/@d4:d4:da:59:08:c4/NC_1.0", "21.45");
+  client.publish("measures/@d4:d4:da:59:08:c4/NC_2.5", "22.54");
+  client.publish("measures/@d4:d4:da:59:08:c4/NC_4.0", "22.74");
+  client.publish("measures/@d4:d4:da:59:08:c4/NC_10.0", "22.79");
 
-  client.publish("measures/@d4:d4:da:59:08:c4/TP/", "0.74");
+  client.publish("measures/@d4:d4:da:59:08:c4/TP", "0.74");
 
   client.loop();
 }
