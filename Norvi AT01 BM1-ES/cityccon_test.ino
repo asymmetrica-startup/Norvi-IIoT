@@ -5,6 +5,9 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
+#define PIN      25
+#define NUMPIXELS 1
+
 const char* ssid = "FASTWEB-Ubx8JX";
 const char* password = "TGqfj9GTK4";
 const char* mqtt_server = "dashboard.cityconn.cloud";
@@ -14,6 +17,9 @@ const char* mqtt_password = "eCFckRQHrW2y6gL";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
+
+Adafruit_ADS1115 ads1; 
+Adafruit_NeoPixel pixels (NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
 
