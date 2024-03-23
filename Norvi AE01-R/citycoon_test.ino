@@ -5,8 +5,8 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-const char* ssid = "Villa";
-const char* password = "pefragabila";
+const char* ssid = "FASTWEB-Ubx8JX";
+const char* password = "TGqfj9GTK4";
 const char* mqtt_server = "dashboard.cityconn.cloud";
 const int mqtt_port = 30883;
 const char* mqtt_user = "dbagroup";
@@ -49,7 +49,7 @@ void setup() {
   client.setServer(mqtt_server, mqtt_port);
   while (!client.connected()) {
     Serial.println("Connessione al broker MQTT...");
-    if (client.connect("ESP32Client")) {
+    if (client.connect("ESP32Client"), mqtt_user, mqtt_port) {
       Serial.println("Connesso al broker MQTT");
     } else {
       Serial.print("Errore di connessione, riprovo in 5 secondi...");
